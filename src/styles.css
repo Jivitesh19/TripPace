@@ -1,0 +1,185 @@
+@import "tailwindcss" source(none);
+@import "tw-animate-css";
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-sans: "Public Sans", sans-serif;
+  --font-display: "Manrope", sans-serif;
+  --color-info: var(--info);
+  --color-warning: var(--warning);
+  --color-tip: var(--tip);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root, .dark {
+  --radius: 0.5rem;
+  --background: oklch(0.155 0.004 250);
+  --foreground: oklch(0.945 0.004 250);
+  --card: oklch(0.198 0.004 250);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.84 0.115 163);
+  --primary-foreground: oklch(0.20 0.025 163);
+  --secondary: oklch(0.285 0.01 250);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.255 0.006 250);
+  --muted-foreground: oklch(0.685 0.01 250);
+  --accent: oklch(0.265 0.008 250);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.74 0.16 25);
+  --destructive-foreground: var(--background);
+  --border: oklch(0.29 0.007 250);
+  --input: var(--border);
+  --ring: var(--primary);
+  --info: oklch(0.78 0.105 245);
+  --warning: oklch(0.82 0.13 78);
+  --tip: oklch(0.78 0.10 78);
+  --museum: oklch(0.78 0.10 300);
+  --food: oklch(0.78 0.12 48);
+  --outdoor: var(--primary);
+  --sightseeing: var(--info);
+  --chill: oklch(0.76 0.025 250);
+  --cover-foreground: oklch(0.99 0 0);
+  --cover-scrim: oklch(0.12 0.015 160 / 78%);
+  --cover-shadow: 0 2px 14px oklch(0.1 0 0 / 20%);
+  --chart-1: var(--primary);
+  --chart-2: var(--info);
+  --chart-3: var(--warning);
+  --chart-4: var(--museum);
+  --chart-5: var(--food);
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+body { font-family: var(--font-sans); letter-spacing: 0; }
+button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+.page-width { max-width: 1320px; margin-inline: auto; padding-inline: 40px; }
+.brand-mark { width: 40px; height: 40px; display: grid; place-items: center; color: var(--primary); border: 1px solid var(--border); border-radius: 50%; }
+.eyebrow { color: var(--muted-foreground); font-size: 10px; font-weight: 600; letter-spacing: 0; }
+.form-input { width: 100%; min-height: 46px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--foreground); font-size: 14px; outline: none; transition: border-color 180ms; }
+.form-input.pl-10 { padding-left: 40px; }
+.form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 2px color-mix(in oklch, var(--primary) 12%, transparent); }
+.form-input::placeholder { color: var(--muted-foreground); }
+.budget-option { display: flex; width: 100%; height: auto; min-height: 76px; padding: 13px; gap: 12px; border-radius: 6px; background: var(--card); text-align: left; white-space: normal; box-shadow: none; }
+.budget-option.budget-selected { border-color: color-mix(in oklch, var(--primary) 65%, var(--border)); background: color-mix(in oklch, var(--primary) 5%, var(--card)); }
+.budget-symbol { width: 30px; color: var(--primary); font-family: monospace; font-weight: 600; }
+.budget-check { display: grid; width: 18px; height: 18px; flex-shrink: 0; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--primary-foreground); }
+.budget-selected .budget-check { background: var(--primary); border-color: var(--primary); }
+.demo-button { width: 100%; height: 44px; padding: 0 8px; font-size: 12px; text-align: left; gap: 10px; }
+.destination-cover { position: relative; isolation: isolate; min-height: 190px; overflow: hidden; background: var(--card); border-radius: 8px; color: var(--foreground); }
+.destination-cover img { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: -2; }
+.destination-cover.has-photo { color: var(--cover-foreground); }
+.destination-cover.has-photo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--cover-scrim), transparent); }
+.cover-content { padding: 32px; max-width: 85%; text-shadow: var(--cover-shadow); }
+.cover-eyebrow { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; margin-bottom: 10px; }
+.cover-dot { height: 3px; width: 3px; border-radius: 50%; background: currentColor; margin-inline: 3px; }
+.cover-stamp { position: absolute; right: 24px; bottom: 24px; border: 1px solid currentColor; opacity: 0.75; border-radius: 50%; width: 44px; height: 44px; display: grid; place-items: center; }
+.metrics-grid { display: grid; grid-template-columns: 1.1fr 1fr; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+.metric-block { min-width: 0; padding: 0 24px; }
+.metric-block:first-child { padding-left: 0; border-right: 1px solid var(--border); }
+.metric-block:last-child { padding-right: 0; }
+.pace-tag { padding: 3px 7px; border-radius: 4px; font-size: 10px; white-space: nowrap; }
+.pace-relaxed { color: var(--primary); background: color-mix(in oklch, var(--primary) 10%, transparent); }
+.pace-balanced { color: var(--info); background: color-mix(in oklch, var(--info) 10%, transparent); }
+.pace-packed { color: var(--warning); background: color-mix(in oklch, var(--warning) 10%, transparent); }
+.day-selected { color: var(--primary); background: color-mix(in oklch, var(--primary) 10%, var(--background)); box-shadow: inset 0 -2px var(--primary); }
+.slot-heading { display: flex; width: 100%; padding: 0; height: 44px; gap: 10px; justify-content: flex-start; margin-bottom: 8px; }
+.timeline { margin-left: 7px; border-left: 1px solid var(--border); padding-left: 22px; display: grid; gap: 12px; }
+.activity-card { position: relative; border: 1px solid var(--border); border-radius: 8px; padding: 18px; background: var(--card); transition: border-color 180ms; animation: reveal 250ms ease-out; }
+.activity-card:hover { border-color: color-mix(in oklch, var(--muted-foreground) 60%, var(--border)); }
+.timeline-dot { position: absolute; left: -27px; top: 30px; width: 9px; height: 9px; border-radius: 50%; background: var(--background); border: 2px solid var(--muted-foreground); }
+.activity-icon { display: grid; flex-shrink: 0; place-items: center; width: 40px; height: 40px; border-radius: 6px; }
+.category-label { font-size: 10px; font-weight: 500; }
+.category-food { --category: var(--food); color: var(--category); }
+.category-museum { --category: var(--museum); color: var(--category); }
+.category-sightseeing { --category: var(--sightseeing); color: var(--category); }
+.category-outdoor { --category: var(--outdoor); color: var(--category); }
+.category-chill { --category: var(--chill); color: var(--category); }
+.activity-icon { background: color-mix(in oklch, var(--category) 10%, transparent); }
+.remove-button { width: 44px; height: 44px; margin-top: -8px; margin-right: -10px; color: var(--muted-foreground); }
+.remove-button:hover { color: var(--destructive); background: color-mix(in oklch, var(--destructive) 10%, transparent); }
+.activity-bottom { display: flex; gap: 18px; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+.activity-bottom p { max-width: 450px; }
+.duration-control { display: inline-flex; flex-shrink: 0; align-items: center; border: 1px solid var(--border); border-radius: 6px; }
+.duration-control button { width: 36px; height: 36px; color: var(--muted-foreground); }
+.duration-control button:hover { color: var(--foreground); }
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 50; padding: 12px; background: var(--primary); color: var(--primary-foreground); }
+.skip-link:focus { top: 16px; }
+@keyframes reveal { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1100px) { .activity-bottom { flex-wrap: wrap; gap: 10px; } .pace-tag { margin-left: 0; } }
+@media (max-width: 767px) { .page-width { padding-inline: 20px; } .cover-content { padding: 24px; } .metrics-grid { gap: 20px; } .metric-block { padding: 0; } .metric-block:first-child { padding-right: 16px; } .activity-card { padding: 14px; } .duration-control button { width: 44px; height: 44px; } .destination-cover { min-height: 180px; } }
+@media (max-width: 420px) { .metrics-grid { grid-template-columns: 1fr; gap: 20px; } .metric-block:first-child { border-right: 0; padding-right: 0; } .cover-content { max-width: 100%; padding: 24px 20px; } .cover-stamp { display: none; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
